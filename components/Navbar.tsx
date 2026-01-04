@@ -5,6 +5,7 @@ import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import { selectCartCount, toggleCart } from '@/lib/features/cart/cartSlice';
 import ThemeToggle from './ThemeToggle';
 import Link from 'next/link';
+import CurrencySelector from './CurrencySelector'; // Import CurrencySelector
 
 export default function Navbar() {
   const dispatch = useAppDispatch();
@@ -30,6 +31,7 @@ export default function Navbar() {
           </div>
         </div>
         <div className="flex items-center gap-4">
+          <CurrencySelector />
           <ThemeToggle />
           <button className="rounded-full p-2 text-zinc-600 hover:bg-zinc-100 dark:text-zinc-400 dark:hover:bg-zinc-800 cursor-pointer">
             <span className="sr-only">Search</span>

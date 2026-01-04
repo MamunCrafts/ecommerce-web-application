@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { CartItem as CartItemType, removeFromCart, updateQuantity } from '@/lib/features/cart/cartSlice';
-import { useAppDispatch } from '@/lib/hooks';
+import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 
 interface CartItemProps {
   item: CartItemType;
@@ -8,6 +8,8 @@ interface CartItemProps {
 
 export default function CartItem({ item }: CartItemProps) {
   const dispatch = useAppDispatch();
+  const { currentCurrency, rates, symbol } = useAppSelector((state) => state.currency);
+  const price = item.price * rates[currentCurrency];
 
   return (
     <div className="flex gap-4 py-4">
@@ -24,7 +26,7 @@ export default function CartItem({ item }: CartItemProps) {
         <div>
           <div className="flex justify-between text-base font-medium text-zinc-900 dark:text-white">
             <h3 className="line-clamp-1">{item.name}</h3>
-            <p className="ml-4">${(item.price * item.quantity).toFixed(2)}</p>
+            <p className="ml-4">{symbol[currentCurrency]}{(price * item.quantity).toFixed(2)}</p>
           </div>
           <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-400">{item.category}</p>
         </div>

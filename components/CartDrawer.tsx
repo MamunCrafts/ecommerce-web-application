@@ -10,6 +10,8 @@ export default function CartDrawer() {
   const isOpen = useAppSelector(selectIsCartOpen);
   const items = useAppSelector(selectCartItems);
   const total = useAppSelector(selectCartTotal);
+  const { currentCurrency, rates, symbol } = useAppSelector((state) => state.currency);
+  const displayTotal = total * rates[currentCurrency];
 
   // Prevent scrolling when cart is open
   useEffect(() => {
@@ -88,7 +90,7 @@ export default function CartDrawer() {
                     <div className="border-t border-zinc-200 px-4 py-6 sm:px-6 dark:border-zinc-800">
                     <div className="flex justify-between text-base font-medium text-zinc-900 dark:text-white">
                         <p>Subtotal</p>
-                        <p>${total.toFixed(2)}</p>
+                        <p>{symbol[currentCurrency]}{displayTotal.toFixed(2)}</p>
                     </div>
                     <p className="mt-0.5 text-sm text-zinc-500 dark:text-zinc-400">Shipping and taxes calculated at checkout.</p>
                     <div className="mt-6">

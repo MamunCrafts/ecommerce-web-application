@@ -13,6 +13,8 @@ export default function CheckoutPage() {
   const dispatch = useAppDispatch();
   const items = useAppSelector(selectCartItems);
   const total = useAppSelector(selectCartTotal);
+  const { currentCurrency, rates, symbol } = useAppSelector((state) => state.currency);
+  const displayTotal = total * rates[currentCurrency];
 
   const [formData, setFormData] = useState({
     name: '',
@@ -32,7 +34,7 @@ export default function CheckoutPage() {
     dispatch(placeOrder({
       id: orderId,
       items,
-      total,
+      total, // Keep internal total in USD or base currency
       date: new Date().toISOString(),
       customer: {
         name: formData.name,
@@ -107,7 +109,7 @@ export default function CheckoutPage() {
               </div>
 
               <button type="submit" className="w-full bg-blue-600 text-white py-3 px-4 rounded-md font-medium hover:bg-blue-700 shadow-sm transition-colors cursor-pointer">
-                Place Order ${total.toFixed(2)}
+                Place Order {symbol[currentCurrency]}{displayTotal.toFixed(2)}
               </button>
             </form>
           </div>
@@ -122,13 +124,13 @@ export default function CheckoutPage() {
                                 <span className="text-sm font-medium text-zinc-900 dark:text-white">{item.quantity}x</span>
                                 <span className="ml-2 text-sm text-zinc-600 dark:text-zinc-400">{item.name}</span>
                             </div>
-                            <span className="text-sm font-medium text-zinc-900 dark:text-white">${(item.price * item.quantity).toFixed(2)}</span>
+                            <span className="text-sm font-medium text-zinc-900 dark:text-white">{symbol[currentCurrency]}{(item.price * item.quantity * rates[currentCurrency]).toFixed(2)}</span>
                         </li>
                     ))}
                 </ul>
                 <div className="border-t border-zinc-200 dark:border-zinc-700 pt-4 mt-4 flex justify-between items-center">
                     <span className="text-base font-medium text-zinc-900 dark:text-white">Total</span>
-                    <span className="text-xl font-bold text-zinc-900 dark:text-white">${total.toFixed(2)}</span>
+                    <span className="text-xl font-bold text-zinc-900 dark:text-white">{symbol[currentCurrency]}{displayTotal.toFixed(2)}</span>
                 </div>
              </div>
           </div>

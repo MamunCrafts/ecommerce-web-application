@@ -1,3 +1,4 @@
+
 import { configureStore } from '@reduxjs/toolkit';
 import {
   persistStore,
@@ -12,6 +13,7 @@ import {
 import storage from 'redux-persist/lib/storage';
 import cartReducer from './features/cart/cartSlice';
 import orderReducer from './features/cart/orderSlice';
+import currencyReducer from './currencySlice'; 
 
 const persistConfig = {
   key: 'root',
@@ -27,6 +29,7 @@ export const makeStore = () => {
     reducer: {
       cart: persistedCartReducer,
       order: persistedOrderReducer,
+      currency: currencyReducer,
     },
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware({

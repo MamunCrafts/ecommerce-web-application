@@ -3,11 +3,13 @@
 
 import Image from 'next/image';
 import { Product } from '@/lib/data';
-import { useAppDispatch } from '@/lib/hooks';
+import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import { addToCart } from '@/lib/features/cart/cartSlice';
 
 export default function ProductCard({ product }: { product: Product }) {
   const dispatch = useAppDispatch();
+  const { currentCurrency, rates, symbol } = useAppSelector((state) => state.currency);
+  const price = product.price * rates[currentCurrency];
 
   return (
     <div className="group relative flex flex-col overflow-hidden rounded-xl bg-white transition-all hover:shadow-xl dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800">
@@ -51,7 +53,7 @@ export default function ProductCard({ product }: { product: Product }) {
                 </h3>
             </div>
             <p className="text-lg font-semibold text-zinc-900 dark:text-white">
-            ${product.price.toFixed(2)}
+            {symbol[currentCurrency]}{price.toFixed(2)}
             </p>
         </div>
         
