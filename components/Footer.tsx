@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Footer() {
   return (
     <footer className="border-t border-zinc-200 bg-white py-12 dark:border-zinc-800 dark:bg-black">
@@ -6,15 +8,15 @@ export default function Footer() {
           © {new Date().getFullYear()} STORE. All rights reserved.
         </p>
         <div className="flex gap-6">
-          {['Privacy Policy', 'Terms of Service', 'Contact'].map((item) => (
-            <a
-              key={item}
-              href="#"
-              className="text-sm text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100"
-            >
-              {item}
-            </a>
-          ))}
+          <Link href="/privacy" className="text-sm text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100">
+            Privacy Policy
+          </Link>
+          <Link href="/terms" className="text-sm text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100">
+            Terms of Service
+          </Link>
+          <Link href="/contact" className="text-sm text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100">
+            Contact
+          </Link>
         </div>
       </div>
     </footer>

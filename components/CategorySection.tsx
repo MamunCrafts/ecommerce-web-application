@@ -11,7 +11,7 @@ export default function CategorySection({ title, products }: CategorySectionProp
     <section className="py-12">
       <div className="mb-8 flex items-end justify-between">
         <h2 className="text-3xl font-bold text-zinc-900 dark:text-white tracking-tight">{title}</h2>
-        <a href="#" className="text-sm font-medium text-blue-600 hover:text-blue-500 dark:text-blue-400">
+        <a href={`/category/${title}`} className="text-sm font-medium text-blue-600 hover:text-blue-500 dark:text-blue-400">
           View all {title} &rarr;
         </a>
       </div>

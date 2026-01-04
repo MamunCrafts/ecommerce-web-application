@@ -81,7 +81,7 @@ export const products: Product[] = [
     id: 9,
     name: "Minimalist Desk Lamp",
     price: 49.99,
-    image: "https://images.unsplash.com/photo-1507473888900-52e1adad54cd?w=500&auto=format&fit=crop&q=60",
+    image: "https://images.unsplash.com/photo-1565814329452-e1efa11c5b89?w=500&auto=format&fit=crop&q=60",
     category: "Home & Living",
     description: "Brighten your workspace with this sleek, modern lamp.",
   },
@@ -105,10 +105,11 @@ export const products: Product[] = [
     id: 12,
     name: "Abstract Wall Art",
     price: 75.00,
-    image: "https://images.unsplash.com/photo-1549887552-93f954d1d960?w=500&auto=format&fit=crop&q=60",
+    image: "https://images.unsplash.com/photo-1541963463532-d68292c34b19?w=500&auto=format&fit=crop&q=60",
     category: "Home & Living",
     description: "Modern art piece to elevate your living room decor.",
   }
+
 ];
 
 export const getProductsByCategory = () => {
