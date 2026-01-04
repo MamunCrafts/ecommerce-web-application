@@ -20,6 +20,21 @@ export default function ProductCard({ product }: { product: Product }) {
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
         <div className="absolute inset-0 bg-black/0 transition-colors group-hover:bg-black/10" />
+        
+        {/* Sale Badges */}
+        <div className="absolute top-2 left-2 flex flex-col gap-1">
+          {product.tags?.includes('hot') && (
+            <span className="inline-flex items-center rounded-md bg-red-600 px-2 py-1 text-xs font-bold text-white shadow-sm">
+              HOT
+            </span>
+          )}
+          {product.tags?.includes('flash') && (
+            <span className="inline-flex items-center rounded-md bg-orange-500 px-2 py-1 text-xs font-bold text-white shadow-sm">
+              FLASH
+            </span>
+          )}
+        </div>
+
         <button 
           onClick={() => dispatch(addToCart(product))}
           className="absolute bottom-4 right-4 translate-y-12 rounded-full bg-black px-4 py-2 text-sm font-medium text-white shadow-lg transition-all hover:bg-zinc-800 group-hover:translate-y-0 dark:bg-white dark:text-black dark:hover:bg-zinc-200 opacity-0 group-hover:opacity-100 cursor-pointer"

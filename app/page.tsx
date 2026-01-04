@@ -1,11 +1,14 @@
-import { getProductsByCategory } from "@/lib/data";
+import { getProductsByCategory, getHotProducts, getFlashProducts } from "@/lib/data";
 import CategorySection from "@/components/CategorySection";
+import ProductCarousel from "@/components/ProductCarousel";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
 export default function Home() {
   const productsByCategory = getProductsByCategory();
   const categories = Object.keys(productsByCategory);
+  const hotProducts = getHotProducts();
+  const flashProducts = getFlashProducts();
 
   return (
     <div className="min-h-screen bg-zinc-50 dark:bg-black font-sans selection:bg-blue-100 selection:text-blue-900">
@@ -19,6 +22,11 @@ export default function Home() {
             <p className="mx-auto mt-4 max-w-xl text-lg text-zinc-600 dark:text-zinc-400">
             Explore our hand-picked selection of premium products across electronics, fashion, and home accessories.
             </p>
+        </div>
+
+        <div className="space-y-4 mb-16">
+            <ProductCarousel title="🔥 Hot Sales" products={hotProducts} />
+            <ProductCarousel title="⚡ Flash Sales" products={flashProducts} autoplayDetails={{ delay: 3000 }} />
         </div>
 
         <div className="space-y-12 pb-24">
